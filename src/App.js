@@ -93,13 +93,28 @@ function Movie(props){
     e.preventDefault();
   firestore.collection("movies").doc(id).delete();
 
+  }
+  const [formRating, setFormRating] = useState('');
+  let update = true;
+  const updateClick = async(e) =>{
+    e.preventDefault();
+    console.log("Update");
 
+    update = false;
+    console.log(update);
+    const movieRef = firestore.collection('movies').doc(id);
+    const res = await movieRef.update({rating: formRating});
 
   }
   return(
     <>
 
       <div className='movie'>
+      {(update === true) ?
+      <form>
+      <input value={formRating} onChange={(e) => setFormRating(e.target.value)} placeholder="Rating: 1-10 (ex: 8/10)" />
+      </form> : <></>}
+        <button onClick={updateClick}>Update</button>
         <p>{movie}</p>
         <p>{rating}</p>
         <button onClick={deleteClick}>Delete</button>
