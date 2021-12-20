@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import './App.css';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
-
+import Paginate from './Pagination.js'
 
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -27,11 +27,14 @@ function App() {
   return (<>
   <h1>Movie Board</h1>
 
+      <div>
       <Movies></Movies>
+      <Paginate></Paginate>
+      </div>
+
+      
 
   </>)
-
-
 
 
 
@@ -125,6 +128,8 @@ function Movie(props){
 
 }
 }
+
+
 
 
 export default App;
